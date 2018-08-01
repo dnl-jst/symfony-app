@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20180525
+FROM ubuntu:xenial-20180726
 
 RUN apt-get -qq update
 RUN apt-get -qq install -y software-properties-common
