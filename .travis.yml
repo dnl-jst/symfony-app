@@ -1,0 +1,24 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=7.0
+  - VERSION=7.1
+  - VERSION=7.2
+
+install:
+  - git clone https://github.com/dnl-jst/symfony-app.git ~/symfony-app
+
+before_script:
+  - env | sort
+  - cd "~/symfony-app/$VERSION"
+
+script:
+#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - |
+    (
+      set -Eeuo pipefail
+      set -x
+      docker build -t "dnljst/symfony-app:$VERSION" .
+    ) 
+#  - docker push dnljst/symfony-app:$VERSION
