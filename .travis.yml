@@ -2,9 +2,9 @@ language: bash
 services: docker
 
 env:
-  - VERSION=php7.0
-  - VERSION=php7.1
-  - VERSION=php7.2
+  - VERSION=php-7.0
+  - VERSION=php-7.1
+  - VERSION=php-7.2
 
 before_script:
   - env | sort
