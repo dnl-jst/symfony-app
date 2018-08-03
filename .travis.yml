@@ -6,12 +6,9 @@ env:
   - VERSION=php7.1
   - VERSION=php7.2
 
-install:
-  - git clone https://github.com/dnl-jst/symfony-app.git ~/symfony-app
-
 before_script:
   - env | sort
-  - cd "~/symfony-app/$VERSION"
+  - cd "dnl-jst/symfony-app/$VERSION"
 
 script:
 #  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
