@@ -5,6 +5,7 @@ env:
   - VERSION=php-7.0
   - VERSION=php-7.1
   - VERSION=php-7.2
+  - VERSION=php-7.3-alpha
 
 before_script:
   - env | sort
