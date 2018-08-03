@@ -11,11 +11,11 @@ before_script:
   - cd "$VERSION"
 
 script:
-#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - |
     (
       set -Eeuo pipefail
       set -x
       docker build -t "dnljst/symfony-app:$VERSION" .
     ) 
-#  - docker push dnljst/symfony-app:$VERSION
+  - docker push dnljst/symfony-app:$VERSION
