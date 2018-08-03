@@ -17,5 +17,10 @@ script:
       set -Eeuo pipefail
       set -x
       docker build -t "dnljst/symfony-app:$VERSION" .
-    ) 
-  - docker push dnljst/symfony-app:$VERSION
+      docker push dnljst/symfony-app:$VERSION
+
+      if [ "$VERSION" = "php-7.0" ]; then 
+        docker tag dnljst/symfony-app:$VERSION dnljst/symfony-app:latest
+        docker push dnljst/symfony-app:latest
+      fi
+    )
