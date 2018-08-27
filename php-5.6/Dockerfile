@@ -7,7 +7,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
  && curl -sL https://deb.nodesource.com/setup_8.x | bash \ 
- && apt-get -qq install -y php5.6 apache2 libapache2-mod-php5.6 php5.6-mysql php5.6-curl php5.6-cli php5.6-zip php5.6-xml php5.6-mbstring php5.6-soap php5.6-gd php5.6-xdebug php5.6-imap php5.6-phpdbg graphviz nodejs yarn unzip \
+ && apt-get -qq install -y php5.6 apache2 libapache2-mod-php5.6 php5.6-mysql php5.6-curl php5.6-cli php5.6-zip php5.6-xml php5.6-mbstring php5.6-soap php5.6-gd php5.6-xdebug php5.6-imap graphviz nodejs yarn unzip \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/*
