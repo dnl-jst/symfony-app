@@ -12,4 +12,5 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["apache2-foreground"]
+EXPOSE 80
+CMD apachectl -D FOREGROUND
