@@ -11,6 +11,3 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/*
-
-EXPOSE 80
-CMD apachectl -D FOREGROUND
