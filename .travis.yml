@@ -6,7 +6,7 @@ env:
   - VERSION=php-7.0
   - VERSION=php-7.1
   - VERSION=php-7.2
-  - VERSION=php-7.3
+  - VERSION=php-7.3-rc
 
 before_script:
   - env | sort
@@ -21,7 +21,7 @@ script:
       docker build -t "dnljst/symfony-app:$VERSION" .
       docker push dnljst/symfony-app:$VERSION
 
-      if [ "$VERSION" = "php-7.3" ]; then 
+      if [ "$VERSION" = "php-7.2" ]; then 
         docker tag dnljst/symfony-app:$VERSION dnljst/symfony-app:latest
         docker push dnljst/symfony-app:latest
       fi
