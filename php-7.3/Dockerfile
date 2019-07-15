@@ -6,7 +6,7 @@ RUN apt update && apt install -y gnupg libzip-dev libc-client-dev libkrb5-dev zl
  && docker-php-ext-install -j$(nproc) \
     pdo_mysql zip imap gd soap \
  && docker-php-source delete \
- && echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory_limit.ini \
+ && echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory_limit.ini \
  && echo "max_input_vars = 99999" > /usr/local/etc/php/conf.d/max_input_vars.ini \
  && curl -sL https://deb.nodesource.com/setup_11.x | bash \
  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
