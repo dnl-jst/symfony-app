@@ -1,13 +1,16 @@
-FROM ubuntu:bionic
+FROM php:7.1-cli
 
-RUN export DEBIAN_FRONTEND=noninteractive \
- && apt-get -qq update \
- && apt-get -qq install -y software-properties-common curl apt-transport-https \
- && LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
+RUN apt update && apt install -y gnupg libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev libxml2-dev && apt clean \
+ && docker-php-source extract \
+ && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
+ && docker-php-ext-install -j$(nproc) \
+    pdo_mysql zip imap gd soap \
+ && docker-php-source delete \
+ && curl -sL https://deb.nodesource.com/setup_11.x | bash \
  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
- && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
- && curl -sL https://deb.nodesource.com/setup_10.x | bash \ 
- && apt-get -qq install -y build-essential php7.1 apache2 libapache2-mod-php7.1 php7.1-mysql php7.1-curl php7.1-cli php7.1-zip php7.1-xml php7.1-mbstring php7.1-soap php7.1-gd php7.1-xdebug php7.1-imap graphviz nodejs yarn zip unzip \
+ && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+ && apt-get update \
+ && apt-get install -y nodejs yarn zip unzip \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/*
