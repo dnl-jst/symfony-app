@@ -2,6 +2,7 @@ FROM php:7.4.0rc1-cli
 
 RUN apt update && apt install -y gnupg openssl libssl-dev unzip libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev libjpeg62-turbo-dev libfreetype6-dev && apt clean \
  && docker-php-source extract \
+ && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install -j$(nproc) \
     pdo_mysql zip gd \
  && docker-php-source delete \
