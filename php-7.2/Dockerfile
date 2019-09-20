@@ -1,6 +1,6 @@
 FROM php:7.2.19-cli
 
-RUN apt update && apt install -y gnupg libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev libxml2-dev libjpeg62-turbo-dev libfreetype6-dev && apt clean \
+RUN apt update && apt install -y wget gnupg libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev libxml2-dev libjpeg62-turbo-dev libfreetype6-dev && apt clean \
  && docker-php-source extract \
  && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -18,4 +18,13 @@ RUN apt update && apt install -y gnupg libzip-dev libc-client-dev libkrb5-dev zl
  && apt-get install -y nodejs yarn zip unzip \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && curl -s https://getcomposer.org/installer | php \
+ && chmod +x composer.phar \
+ && mv composer.phar /usr/local/bin/composer \
+ && wget -O phive.phar https://phar.io/releases/phive.phar \
+ && wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc \
+ && gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79 \
+ && gpg --verify phive.phar.asc phive.phar \
+ && chmod +x phive.phar \
+ && mv phive.phar /usr/local/bin/phive
