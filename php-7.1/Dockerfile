@@ -8,6 +8,8 @@ RUN apt update && apt install -y wget gnupg libzip-dev libc-client-dev libkrb5-d
     pdo_mysql zip imap gd soap \
  && pecl install xdebug \
  && docker-php-ext-enable xdebug \
+ && pecl install imagick \
+ && docker-php-ext-enable imagick \
  && docker-php-source delete \
  && echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory_limit.ini \
  && echo "max_input_vars = 99999" > /usr/local/etc/php/conf.d/max_input_vars.ini \

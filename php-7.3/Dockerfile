@@ -1,4 +1,4 @@
-FROM php:7.3.6-cli
+FROM php:7.3-cli
 
 RUN apt update && apt install -y wget gnupg libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev libxml2-dev libjpeg62-turbo-dev libfreetype6-dev && apt clean \
  && docker-php-source extract \
@@ -8,6 +8,8 @@ RUN apt update && apt install -y wget gnupg libzip-dev libc-client-dev libkrb5-d
     pdo_mysql zip imap gd soap \
  && pecl install xdebug \
  && docker-php-ext-enable xdebug \
+ && pecl install imagick \
+ && docker-php-ext-enable imagick \
  && docker-php-source delete \
  && echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory_limit.ini \
  && echo "max_input_vars = 99999" > /usr/local/etc/php/conf.d/max_input_vars.ini \
