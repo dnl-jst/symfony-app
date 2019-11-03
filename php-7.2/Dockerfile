@@ -11,8 +11,6 @@ RUN apt-get update \
     pdo_mysql zip imap gd soap \
  && pecl install pcov \
  && docker-php-ext-enable pcov \
- && pecl install xdebug \
- && docker-php-ext-enable xdebug \
  && pecl install imagick \
  && docker-php-ext-enable imagick \
  && docker-php-source delete \

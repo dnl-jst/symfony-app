@@ -8,6 +8,8 @@ RUN apt update \
  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install -j$(nproc) \
     pdo_mysql zip gd \
+ && pecl install pcov \
+ && docker-php-ext-enable pcov \
  && docker-php-source delete \
  && echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory_limit.ini \
  && echo "max_input_vars = 99999" > /usr/local/etc/php/conf.d/max_input_vars.ini \
