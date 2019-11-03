@@ -7,8 +7,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        versions: [php-7.1, php-7.2, php-7.3, php-7.4-rc1]
 
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: cd ${{ matrix.version }} && docker build . --file Dockerfile --tag jost-devops/symfony-app:${{ matrix.version }}
