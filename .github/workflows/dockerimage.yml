@@ -3,9 +3,7 @@ name: Build docker images
 on: [push]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,10 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: cd ${{ matrix.php_version }} && docker build . --file Dockerfile --tag jost-devops/symfony-app:${{ matrix.php_version }}
-    - name: Publish Docker
-      uses: elgohr/Publish-Docker-Github-Action@2.7
-      with:
-        name: jostdevops/symfony-app:${{ matrix.php_version }}
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      run: cd ${{ matrix.php_version }} && docker build . --file Dockerfile --tag jostdevops/symfony-app:${{ matrix.php_version }}
+    - name: Login to Docker registry
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Publish Docker image
+      run: docker push jostdevops/symfony-app:${{ matrix.php_version }}
