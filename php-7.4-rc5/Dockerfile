@@ -5,7 +5,7 @@ RUN apt update \
  		libkrb5-dev zlib1g-dev libpng-dev libjpeg62-turbo-dev libfreetype6-dev \
  && apt clean \
  && docker-php-source extract \
- && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+ && docker-php-ext-configure gd --with-gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) \
     pdo_mysql zip gd \
  && pecl install pcov \
