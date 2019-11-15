@@ -7,7 +7,7 @@ RUN apt update \
  && docker-php-source extract \
  && docker-php-ext-configure gd --with-gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) \
-    pdo_mysql zip gd \
+    pdo_mysql zip gd mbstring sockets \
  && pecl install pcov \
  && docker-php-ext-enable pcov \
  && docker-php-source delete \
