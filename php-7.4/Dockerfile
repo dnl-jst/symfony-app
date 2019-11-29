@@ -5,9 +5,10 @@ RUN apt update \
  		libkrb5-dev zlib1g-dev libpng-dev libjpeg62-turbo-dev libfreetype6-dev libonig-dev \
  && apt clean \
  && docker-php-source extract \
+ && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
  && docker-php-ext-configure gd --with-gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) \
-    pdo_mysql zip gd mbstring sockets \
+    pdo_mysql zip imap gd mbstring sockets \
  && pecl install pcov \
  && docker-php-ext-enable pcov \
  && docker-php-source delete \
