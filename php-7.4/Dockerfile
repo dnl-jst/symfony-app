@@ -1,4 +1,4 @@
-FROM php:7.4.0-cli
+FROM php:7.4-cli
 
 RUN apt update \
  && apt install -y wget gnupg openssl libssl-dev unzip libzip-dev libc-client-dev \
