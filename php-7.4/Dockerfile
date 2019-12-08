@@ -6,7 +6,7 @@ RUN apt update \
  && apt clean \
  && docker-php-source extract \
  && PHP_OPENSSL=yes docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
- && docker-php-ext-configure gd --with-gd --with-freetype --with-jpeg \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) \
     pdo_mysql zip imap gd mbstring sockets \
  && pecl install pcov \
