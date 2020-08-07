@@ -11,6 +11,8 @@ RUN apt update \
     pdo_mysql zip imap gd mbstring sockets \
  && pecl install pcov \
  && docker-php-ext-enable pcov \
+ && pecl install xdebug \
+ && docker-php-ext-enable xdebug \
  && docker-php-source delete \
  && echo "memory_limit = 2G" > /usr/local/etc/php/conf.d/memory_limit.ini \
  && echo "max_input_vars = 99999" > /usr/local/etc/php/conf.d/max_input_vars.ini \
