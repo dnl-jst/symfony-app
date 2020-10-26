@@ -22,7 +22,7 @@ RUN apt-get update \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/* \
- && curl -s https://getcomposer.org/installer | php \
+ && curl https://getcomposer.org/download/1.10.16/composer.phar -o composer.phar \
  && chmod +x composer.phar \
  && mv composer.phar /usr/local/bin/composer \
  && wget -O phive.phar https://phar.io/releases/phive.phar \
