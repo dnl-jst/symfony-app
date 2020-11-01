@@ -1,4 +1,4 @@
-FROM php:8.0.0RC2-cli
+FROM php:8.0.0beta1-cli
 
 RUN apt update \
  && apt install -y wget gnupg openssl libssl-dev unzip libzip-dev libc-client-dev \
@@ -22,7 +22,7 @@ RUN apt update \
  && ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata \
  && rm -rf /var/lib/apt/lists/* \
- && curl https://getcomposer.org/download/1.10.16/composer.phar -o composer.phar \
+ && curl -s https://getcomposer.org/installer | php \
  && chmod +x composer.phar \
  && mv composer.phar /usr/local/bin/composer \
  && wget -O phive.phar https://phar.io/releases/phive.phar \
