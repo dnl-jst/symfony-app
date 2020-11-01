@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php_version: [php-7.1, php-7.2, php-7.3, php-7.4, php-8.0.0beta1]
+        php_version: [php-7.1, php-7.2, php-7.3, php-7.4, php-8.0.0RC3]
 
     steps:
       - uses: actions/checkout@v1
