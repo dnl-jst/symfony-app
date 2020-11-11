@@ -135,6 +135,8 @@ build:php-8.0.0RC3-arm64:
 manifest:
   stage: manifest
   image: docker:latest
+  services:
+    - docker:dind
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker manifest create jostdevops/symfony-app:php-7.1 jostdevops/symfony-app:php-7.1-amd64 jostdevops/symfony-app:php-7.1-arm64
