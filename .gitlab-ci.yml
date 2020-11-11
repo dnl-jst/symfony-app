@@ -1,5 +1,6 @@
 stages:
   - build
+  - manifest
 
 build:php-7.1-amd64:
   stage: build
@@ -7,7 +8,7 @@ build:php-7.1-amd64:
   services:
     - docker:dind
   variables:
-    IMAGE: jostdevops/symfony-app:php7.1-amd64
+    IMAGE: jostdevops/symfony-app:php-7.1-amd64
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker build -t ${IMAGE} php-7.1/
@@ -19,10 +20,130 @@ build:php-7.1-arm64:
   services:
     - docker:dind
   variables:
-    IMAGE: jostdevops/symfony-app:php7.1-arm64
+    IMAGE: jostdevops/symfony-app:php-7.1-arm64
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker build -t ${IMAGE} php-7.1/
     - docker push ${IMAGE}
   tags:
     - arm64
+
+build:php-7.2-amd64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.2-amd64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.2/
+    - docker push ${IMAGE}
+
+build:php-7.2-arm64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.2-arm64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.2/
+    - docker push ${IMAGE}
+  tags:
+    - arm64
+
+build:php-7.3-amd64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.3-amd64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.3/
+    - docker push ${IMAGE}
+
+build:php-7.3-arm64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.3-arm64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.3/
+    - docker push ${IMAGE}
+  tags:
+    - arm64
+
+build:php-7.4-amd64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.4-amd64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.4/
+    - docker push ${IMAGE}
+
+build:php-7.4-arm64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-7.4-arm64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-7.4/
+    - docker push ${IMAGE}
+  tags:
+    - arm64
+
+build:php-8.0.0RC3-amd64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-8.0.0RC3-amd64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-8.0.0RC3/
+    - docker push ${IMAGE}
+
+build:php-8.0.0RC3-arm64:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE: jostdevops/symfony-app:php-8.0.0RC3-arm64
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker build -t ${IMAGE} php-8.0.0RC3/
+    - docker push ${IMAGE}
+  tags:
+    - arm64
+
+manifest:
+  stage: manifest
+  image: docker:latest
+  script:
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+    - docker manifest create jostdevops/symfony-app:php-7.1 jostdevops/symfony-app:php-7.1-amd64 jostdevops/symfony-app:php-7.1-arm64
+    - docker manifest push jostdevops/symfony-app:php-7.1
+    - docker manifest create jostdevops/symfony-app:php-7.2 jostdevops/symfony-app:php-7.2-amd64 jostdevops/symfony-app:php-7.2-arm64
+    - docker manifest push jostdevops/symfony-app:php-7.2
+    - docker manifest create jostdevops/symfony-app:php-7.3 jostdevops/symfony-app:php-7.3-amd64 jostdevops/symfony-app:php-7.3-arm64
+    - docker manifest push jostdevops/symfony-app:php-7.3
+    - docker manifest create jostdevops/symfony-app:php-7.4 jostdevops/symfony-app:php-7.4-amd64 jostdevops/symfony-app:php-7.4-arm64
+    - docker manifest push jostdevops/symfony-app:php-7.4
+    - docker manifest create jostdevops/symfony-app:php-8.0.0RC3 jostdevops/symfony-app:php-8.0.0RC3-amd64 jostdevops/symfony-app:php-8.0.0RC3-arm64
+    - docker manifest push jostdevops/symfony-app:php-8.0.0RC3
