@@ -9,7 +9,7 @@ build:php-7.1-amd64:
   variables:
     IMAGE: jostdevops/symfony-app:php7.1-amd64
   script:
-    - docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker build -t ${IMAGE} php-7.1/
     - docker push ${IMAGE}
 
@@ -21,7 +21,7 @@ build:php-7.1-arm64:
   variables:
     IMAGE: jostdevops/symfony-app:php7.1-arm64
   script:
-    - docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
+    - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker build -t ${IMAGE} php-7.1/
     - docker push ${IMAGE}
   tags:
