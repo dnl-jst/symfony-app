@@ -137,6 +137,8 @@ manifest:
   image: docker:latest
   services:
     - docker:dind
+  variables:
+    DOCKER_CLI_EXPERIMENTAL: enabled
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
     - docker manifest create jostdevops/symfony-app:php-7.1 jostdevops/symfony-app:php-7.1-amd64 jostdevops/symfony-app:php-7.1-arm64
