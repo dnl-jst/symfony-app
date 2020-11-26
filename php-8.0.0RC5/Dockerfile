@@ -1,4 +1,4 @@
-FROM php:8.0.0RC3-cli
+FROM php:8.0.0RC5-cli
 
 RUN apt update \
  && apt install -y wget gnupg openssl libssl-dev unzip libzip-dev libc-client-dev \

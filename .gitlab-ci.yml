@@ -106,28 +106,28 @@ build:php-7.4-arm64:
   tags:
     - arm64
 
-build:php-8.0.0RC3-amd64:
+build:php-8.0.0RC5-amd64:
   stage: build
   image: docker:latest
   services:
     - docker:dind
   variables:
-    IMAGE: jostdevops/symfony-app:php-8.0.0RC3-amd64
+    IMAGE: jostdevops/symfony-app:php-8.0.0RC5-amd64
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
-    - docker build -t ${IMAGE} php-8.0.0RC3/
+    - docker build -t ${IMAGE} php-8.0.0RC5/
     - docker push ${IMAGE}
 
-build:php-8.0.0RC3-arm64:
+build:php-8.0.0RC5-arm64:
   stage: build
   image: docker:latest
   services:
     - docker:dind
   variables:
-    IMAGE: jostdevops/symfony-app:php-8.0.0RC3-arm64
+    IMAGE: jostdevops/symfony-app:php-8.0.0RC5-arm64
   script:
     - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
-    - docker build -t ${IMAGE} php-8.0.0RC3/
+    - docker build -t ${IMAGE} php-8.0.0RC5/
     - docker push ${IMAGE}
   tags:
     - arm64
